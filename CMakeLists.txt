@@ -3,6 +3,5 @@ project(punteros_educacion)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(punteros_educacion ej1.cpp
-        ej2.cpp
+add_executable(punteros_educacion ej2.cpp
         "Ejercicio 3.cpp")
