@@ -13,7 +13,7 @@ int* crearArray(int n) {
 
 int* llennarArray(int arr[], int n) {
     for (int i = 0; i < n; ++i) {
-        arr[i] = rand() % 1000;
+        arr[i] = rand() % 10000;
     }
     return arr;
 }
@@ -52,7 +52,7 @@ void buscarMenor(int arr[], int n) {
     std::cout<< "Menor:  " <<menorActual <<endl;
 }
 
-void sortArray(int arr[], int n ) {
+void bubbleSort(int arr[], int n ) {
     for (int i=1; i<n; i++) {
         for (int j =0; j<n-i; j++) {
             if (arr[j] > arr[j+1]) {
@@ -68,6 +68,55 @@ void sortArray(int arr[], int n ) {
     cout << endl;
 }
 
+void selectionSort(int arr[], int n) {
+    for(int i=1; i<n-1;i++) {
+        int menor = i;
+        for (int j = i+1; j<n; j++) {
+            if (arr[j] < arr[menor]) {
+                menor = j;
+            }
+        }
+        int aux = arr[i];
+        arr[i] = arr[menor];
+        arr[menor] = aux;
+    }
+
+    for (int i = 0; i < n; i++) {
+        std::cout << arr[i] << " | ";
+    }
+    std::cout << std::endl;
+
+}
+
+void insertioSort(int arr[], int n) {
+
+}
+
+void shellSort(int arr[], int n) {
+    int intervalo = n/2;
+        while (intervalo > 0) {
+            for (int i = intervalo; i < n; i++) {
+                int j = i;
+                int temp = arr[i];
+                while (j >= intervalo && arr[j-intervalo] > temp) {
+                    arr[j] = arr[j-intervalo];
+                    j = j - intervalo;
+                }
+                arr[j] = temp; // ← también te faltaba esta línea
+            }
+            if (intervalo == 2)
+                intervalo = 1;
+            else
+                intervalo = intervalo / 2.2;
+        }
+
+    for (int i = 0; i < n; i++) {
+        std::cout << arr[i] << " | ";
+    }
+    std::cout << std::endl;
+
+}
+
 
     int main() {
 
@@ -77,10 +126,12 @@ void sortArray(int arr[], int n ) {
     auto inicio = chrono::high_resolution_clock::now();
 int* arr = crearArray(n);
 llennarArray(arr, n);
-imprimirArray(arr, n);
+//imprimirArray(arr, n);
     buscarMayor(arr,n);
     buscarMenor(arr,n);
-    sortArray(arr,n);
+    //bubbleSort(arr,n);
+    //selectionSort(arr,n);
+    shellSort(arr,n);
     delete[] arr;
 
     auto fin = chrono::high_resolution_clock::now();
